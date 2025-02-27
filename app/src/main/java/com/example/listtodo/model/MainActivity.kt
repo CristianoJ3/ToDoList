@@ -1,10 +1,7 @@
-package com.example.listtodo
+package com.example.listtodo.model
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.listtodo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
