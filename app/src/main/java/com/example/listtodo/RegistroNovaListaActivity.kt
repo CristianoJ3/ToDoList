@@ -16,6 +16,15 @@ class RegistroNovaListaActivity : AppCompatActivity() {
         setContentView(binding.root)
         Log.i("FAB", "ACESSANDO NOVA ACTIVITY")
 
+        configuraBotaoSubmeter()
 
+    }
+
+    private fun configuraBotaoSubmeter() {
+        val submiteButton = binding.botaoSubmeterDados
+
+        submiteButton.setOnClickListener{
+            finish()
+        }
     }
 }

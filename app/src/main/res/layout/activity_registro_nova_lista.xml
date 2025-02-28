@@ -15,7 +15,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/edit_text_titulo"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
@@ -25,10 +25,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/edit_description_text"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="80dp"
         android:layout_marginTop="30dp"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
@@ -42,11 +42,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tarefa concluída."
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="30dp"
         android:textSize="18dp"
         app:layout_constraintTop_toBottomOf="@id/edit_description_text"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <Button
         android:id="@+id/botao_submeter_dados"

@@ -31,12 +31,6 @@ class MainActivity : AppCompatActivity() {
             ListToDoDataModel("EXEMPLO TEXTO", "UMA BREVE DESCRICAO!!!"),
             ListToDoDataModel("EXEMPLO TEXTO 2", "UMA SEGUNDA BREVE DESCRICAO!!!"),
             ListToDoDataModel("EXEMPLO TEXTO", "UMA BREVE DESCRICAO!!!"),
-            ListToDoDataModel("EXEMPLO TEXTO 2", "UMA SEGUNDA BREVE DESCRICAO!!!"),
-            ListToDoDataModel("EXEMPLO TEXTO", "UMA BREVE DESCRICAO!!!"),
-            ListToDoDataModel("EXEMPLO TEXTO 2", "UMA SEGUNDA BREVE DESCRICAO!!!"),
-            ListToDoDataModel("EXEMPLO TEXTO", "UMA BREVE DESCRICAO!!!"),
-            ListToDoDataModel("EXEMPLO TEXTO 2", "UMA SEGUNDA BREVE DESCRICAO!!!"),
-            ListToDoDataModel("EXEMPLO TEXTO", "UMA BREVE DESCRICAO!!!"),
             ListToDoDataModel("EXEMPLO TEXTO 2", "UMA SEGUNDA BREVE DESCRICAO!!!")
         )
 
