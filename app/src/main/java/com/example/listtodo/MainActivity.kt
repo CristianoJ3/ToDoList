@@ -26,15 +26,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun chamaRecyclerView() {
         val listaTarefasToDo = listOf(
-            ListToDoDataModel("EXEMPLO TEXTO", "UMA BREVE DESCRICAO!!!"),
-            ListToDoDataModel("EXEMPLO TEXTO 2", "UMA SEGUNDA BREVE DESCRICAO!!!"),
-            ListToDoDataModel("EXEMPLO TEXTO", "UMA BREVE DESCRICAO!!!"),
-            ListToDoDataModel("EXEMPLO TEXTO 2", "UMA SEGUNDA BREVE DESCRICAO!!!"),
-            ListToDoDataModel("EXEMPLO TEXTO", "UMA BREVE DESCRICAO!!!"),
-            ListToDoDataModel("EXEMPLO TEXTO 2", "UMA SEGUNDA BREVE DESCRICAO!!!")
+            ListToDoDataModel(1,"EXEMPLO TEXTO", "UMA BREVE DESCRICAO!!!", true),
+            ListToDoDataModel(2, "EXEMPLO TEXTO 2", "UMA SEGUNDA BREVE DESCRICAO!!!", false),
+            ListToDoDataModel(3, "EXEMPLO TEXTO", "UMA BREVE DESCRICAO!!!", true),
+            ListToDoDataModel(4, "EXEMPLO TEXTO 2", "UMA SEGUNDA BREVE DESCRICAO!!!", false),
+            ListToDoDataModel(5, "EXEMPLO TEXTO", "UMA BREVE DESCRICAO!!!", false),
+            ListToDoDataModel(6 ,"EXEMPLO TEXTO 2", "UMA SEGUNDA BREVE DESCRICAO!!!",true)
         )
 
-        val recyclerView = binding.listaItensToDo
+        val recyclerView = binding.listItensToDo
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = ListToDoAdapter(listaTarefasToDo)
     }

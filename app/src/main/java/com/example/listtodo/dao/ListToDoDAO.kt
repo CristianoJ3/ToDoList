@@ -9,12 +9,15 @@ import com.example.listtodo.model.ListToDoDataModel
 @Dao
 interface ListToDoDAO {
 
-    @Insert
-    suspend fun insertList(listToDo: ListToDoDataModel)
-
-    @Delete
-    suspend fun deletar(listToDo: ListToDoDataModel)
+    @Query("SELECT * FROM ListToDoDataModel")
+    fun getAllLists(): List<ListToDoDataModel>
 
     @Query("SELECT * FROM ListToDoDataModel WHERE id = :listId")
-    fun autentica(listId: String, senha: String): ListToDoDataModel?
+    fun searchAllLists(listId: String): ListToDoDataModel?
+
+    @Insert
+    fun saveList(listToDo: ListToDoDataModel)
+
+    @Delete
+    fun remove(listToDo: ListToDoDataModel)
 }

@@ -16,7 +16,7 @@ class ListToDoAdapter(
     class ListToDoViewHolder(private val binding: ActivityToDoListBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        val tituloListaToDo: TextView = binding.tituloListaToDo
+        val tituloListaToDo: TextView = binding.titleListToDo
         val descricaoListaToDo: TextView = binding.textoInformativo
     }
 
@@ -30,8 +30,8 @@ class ListToDoAdapter(
 
     override fun onBindViewHolder(holder: ListToDoViewHolder, position: Int) {
         val listaToDo = listaTarefasToDo[position]
-        holder.tituloListaToDo.text = listaToDo.tituloLista
-        holder.descricaoListaToDo.text = listaToDo.descricaoLista
+        holder.tituloListaToDo.text = listaToDo.listTitle
+        holder.descricaoListaToDo.text = listaToDo.listDescription
     }
 
 }

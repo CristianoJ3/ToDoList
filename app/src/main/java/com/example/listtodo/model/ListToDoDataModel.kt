@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 data class ListToDoDataModel(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-    val tituloLista: String,
-    val descricaoLista: String,
-    val concluida: Boolean
+    val listTitle: String,
+    val listDescription: String,
+    val finished: Boolean
 )
