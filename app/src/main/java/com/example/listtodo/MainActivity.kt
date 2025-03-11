@@ -4,15 +4,25 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.listtodo.adapter.ListToDoAdapter
+import com.example.listtodo.database.AppDatabase
 import com.example.listtodo.databinding.ActivityMainBinding
 import com.example.listtodo.model.ListToDoDataModel
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
+    private val adapter = ListToDoAdapter(context = this)
+
     private val binding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
+    }
+
+    private val listToDoDAO by lazy {
+        val db = AppDatabase.instancia(this)
+        db.listToDoDAO()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,22 +31,31 @@ class MainActivity : AppCompatActivity() {
 
         configuraFab()
         chamaRecyclerView()
+        lifecycleScope.launch {
+            searchLists()
+        }
+
 
     }
 
-    private fun chamaRecyclerView() {
-        val listaTarefasToDo = listOf(
-            ListToDoDataModel(1,"EXEMPLO TEXTO", "UMA BREVE DESCRICAO!!!", true),
-            ListToDoDataModel(2, "EXEMPLO TEXTO 2", "UMA SEGUNDA BREVE DESCRICAO!!!", false),
-            ListToDoDataModel(3, "EXEMPLO TEXTO", "UMA BREVE DESCRICAO!!!", true),
-            ListToDoDataModel(4, "EXEMPLO TEXTO 2", "UMA SEGUNDA BREVE DESCRICAO!!!", false),
-            ListToDoDataModel(5, "EXEMPLO TEXTO", "UMA BREVE DESCRICAO!!!", false),
-            ListToDoDataModel(6 ,"EXEMPLO TEXTO 2", "UMA SEGUNDA BREVE DESCRICAO!!!",true)
-        )
+    private fun searchLists() {
+        lifecycleScope.launch {
+            listToDoDAO.getAllLists().collect { lists ->
+                Log.i("LISTA-DADOS", "Listas recuperadas: $lists")
+                adapter.atualiza(lists)
+            }
+        }
+    }
 
-        val recyclerView = binding.listItensToDo
+    private fun chamaRecyclerView() {
+
+        val recyclerView = binding.listItensToDoRecyclerView
+
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = ListToDoAdapter(listaTarefasToDo)
+        recyclerView.adapter = adapter
+
+//        recyclerView.layoutManager = LinearLayoutManager(this)
+//        recyclerView.adapter = ListToDoAdapter(this)
     }
 
     private fun configuraFab() {

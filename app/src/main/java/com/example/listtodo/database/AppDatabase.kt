@@ -10,7 +10,7 @@ import com.example.listtodo.model.ListToDoDataModel
 @Database(entities = [ListToDoDataModel::class], version = 1)
 abstract class AppDatabase : RoomDatabase(){
 
-    abstract fun lisToDoDAO(): ListToDoDAO
+    abstract fun listToDoDAO(): ListToDoDAO
 
     companion object {
         @Volatile

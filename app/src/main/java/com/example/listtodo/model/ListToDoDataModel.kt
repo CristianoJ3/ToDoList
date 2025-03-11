@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity
 data class ListToDoDataModel(
     @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
+    val id: Long = 0,
     val listTitle: String,
     val listDescription: String,
     val finished: Boolean
