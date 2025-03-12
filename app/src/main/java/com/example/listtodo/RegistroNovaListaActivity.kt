@@ -15,6 +15,8 @@ import java.math.BigDecimal
 
 class RegistroNovaListaActivity : AppCompatActivity() {
 
+    private var listToDoId: Long = 0L
+
     val binding by lazy {
         ActivityRegistroNovaListaBinding.inflate(layoutInflater)
     }
@@ -29,7 +31,11 @@ class RegistroNovaListaActivity : AppCompatActivity() {
         Log.i("FAB", "ACESSANDO NOVA ACTIVITY")
 
         configuraBotaoSubmeter()
+        tryLauncherList()
+    }
 
+    private fun tryLauncherList() {
+        listToDoId = intent.getLongExtra(CHAVE_LIST_ID, 0L)
     }
 
     private fun configuraBotaoSubmeter() {
@@ -63,8 +69,14 @@ class RegistroNovaListaActivity : AppCompatActivity() {
                 )
 
                 lifecycleScope.launch {
-                    listToDoDAO.saveList(newList)
-                    Log.i("NEW-SAVE", "ITENS SALVO Titulo = $titulo , Descricao = $descricao , Imagem = $imageSet")
+                    if (listToDoId > 0) {
+                        newList.id = listToDoId
+                        listToDoDAO.updateList(newList)
+                        Log.i("NEW-SAVE", "ITENS SALVO Titulo = $titulo , Descricao = $descricao , Imagem = $imageSet")
+                    } else {
+                        listToDoDAO.saveList(newList)
+                    }
+                    //Log.i("NEW-SAVE", "ITENS SALVO Titulo = $titulo , Descricao = $descricao , Imagem = $imageSet")
                     finish() // Fecha a Activity após salvar
                 }
             }
@@ -72,23 +84,27 @@ class RegistroNovaListaActivity : AppCompatActivity() {
         }
     }
 
-//    private fun createList(): ListToDoDataModel {
-//        val textTitle = binding.editTextTitle
-//        val title = textTitle.text.toString()
-//        val descriptionText = binding.editDescriptionText
-//        val description = descriptionText.text.toString()
-//        val switchButton = binding.switchListFinished
-//        var boolean = true
-//        if (switchButton.isChecked) {
-//            boolean = true
-//        } else {
-//            boolean = false
-//        }
-//
-//        return ListToDoDataModel(
-//            listTitle = title,
-//            listDescription = description,
-//            finished = boolean
-//        )
-//    }
+    override fun onResume() {
+        super.onResume()
+        carregaDados()
+    }
+
+    private fun carregaDados() {
+        lifecycleScope.launch {
+            listToDoDAO.searchAllLists(listToDoId).collect {
+                it?.let { listFounded ->
+                    preencheCampos(listFounded)
+                }
+            }
+        }
+    }
+
+    private fun preencheCampos(listaCarregada: ListToDoDataModel) {
+        with(binding) {
+            editTextTitle.setText(listaCarregada.listTitle)
+            editDescriptionText.setText(listaCarregada.listDescription)
+            iconeListaToDo.setImageResource(listaCarregada.imageBackground)
+            switchListFinished.isChecked = listaCarregada.finished
+        }
+    }
 }

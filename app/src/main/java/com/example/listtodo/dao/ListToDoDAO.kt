@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import com.example.listtodo.model.ListToDoDataModel
 import kotlinx.coroutines.flow.Flow
 
@@ -19,6 +20,9 @@ interface ListToDoDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE )
     fun saveList(listToDo: ListToDoDataModel)
+
+    @Update
+    fun updateList(listToDo: ListToDoDataModel)
 
     @Delete
     fun remove(listToDo: ListToDoDataModel)
