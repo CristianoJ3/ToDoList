@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.listtodo.adapter.ListToDoAdapter
 import com.example.listtodo.database.AppDatabase
 import com.example.listtodo.databinding.ActivityMainBinding
-import com.example.listtodo.model.ListToDoDataModel
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
@@ -54,8 +53,15 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
 
-//        recyclerView.layoutManager = LinearLayoutManager(this)
-//        recyclerView.adapter = ListToDoAdapter(this)
+        adapter.quandoClicaNoItem =
+            {
+                Log.i("Formulario", "Lista clicada: $it")
+
+                val intent = Intent(this, DetalhesListActivity::class.java).apply {
+                    putExtra(CHAVE_LIST_ID, it.id)
+                }
+                startActivity(intent)
+            }
     }
 
     private fun configuraFab() {
