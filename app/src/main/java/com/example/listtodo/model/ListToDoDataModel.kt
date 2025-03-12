@@ -9,5 +9,6 @@ data class ListToDoDataModel(
     val id: Long = 0,
     val listTitle: String,
     val listDescription: String,
-    val finished: Boolean
+    val finished: Boolean,
+    val imageBackground: Int
 )

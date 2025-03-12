@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.listtodo.databinding.ActivityToDoListBinding
@@ -24,6 +25,7 @@ class ListToDoAdapter(
 
         val tituloListaToDo: TextView = binding.titleListToDo
         val descricaoListaToDo: TextView = binding.textoInformativo
+        val iconListToDo: ImageView = binding.iconListToDo
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListToDoViewHolder {
@@ -38,6 +40,7 @@ class ListToDoAdapter(
         val listaToDo = listaTarefasToDo[position]
         holder.tituloListaToDo.text = listaToDo.listTitle
         holder.descricaoListaToDo.text = listaToDo.listDescription
+        holder.iconListToDo.setImageResource(listaToDo.imageBackground)
     }
 
     @SuppressLint("NotifyDataSetChanged")
