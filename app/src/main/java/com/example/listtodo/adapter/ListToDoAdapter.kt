@@ -4,10 +4,13 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.listtodo.R
 import com.example.listtodo.databinding.ActivityToDoListBinding
 import com.example.listtodo.model.ListToDoDataModel
 
@@ -15,7 +18,9 @@ import com.example.listtodo.model.ListToDoDataModel
 class ListToDoAdapter(
     private val context: Context,
     listToDo: List<ListToDoDataModel> = emptyList(),
-    var quandoClicaNoItem: (listToDoDetails: ListToDoDataModel) -> Unit = {}
+    var quandoClicaNoItem: (listToDoDetails: ListToDoDataModel) -> Unit = {},
+    var quandoClicaEmEditar: (listToDoDetails: ListToDoDataModel) -> Unit = {},
+    var quandoClicaEmRemover: (listToDoDetails: ListToDoDataModel) -> Unit = {}
     ) :
     RecyclerView.Adapter<ListToDoAdapter.ListToDoViewHolder>() {
 
@@ -23,7 +28,7 @@ class ListToDoAdapter(
 
 
     inner class ListToDoViewHolder(private val binding: ActivityToDoListBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+        RecyclerView.ViewHolder(binding.root), PopupMenu.OnMenuItemClickListener  {
 
         private lateinit var listToDoDetails: ListToDoDataModel
 
@@ -47,9 +52,21 @@ class ListToDoAdapter(
             image.setImageResource(listToDoDetails.imageBackground)
         }
 
-//        val tituloListaToDo: TextView = binding.titleListToDo
-//        val descricaoListaToDo: TextView = binding.textoInformativo
-//        val iconListToDo: ImageView = binding.iconListToDo
+
+        override fun onMenuItemClick(item: MenuItem?): Boolean {
+            item?.let {
+                when (it.itemId) {
+                    R.id.menu_detalhes_lista_editar -> {
+                        quandoClicaEmEditar(listToDoDetails)
+                    }
+                    R.id.menu_detalhes_lista_remover -> {
+                        quandoClicaEmRemover(listToDoDetails)
+                    }
+                }
+            }
+            return true
+        }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListToDoViewHolder {

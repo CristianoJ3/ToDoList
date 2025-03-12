@@ -1,7 +1,10 @@
 package com.example.listtodo
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.listtodo.database.AppDatabase
@@ -26,6 +29,7 @@ class DetalhesListActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         Log.i("FAB", "ACESSANDO NOVA ACTIVITY")
+        setSupportActionBar(binding.toolbar)
 
         tryLauncherList()
     }
@@ -33,6 +37,32 @@ class DetalhesListActivity : AppCompatActivity(){
     override fun onResume() {
         super.onResume()
         buscaLista()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        Log.i("TESTANDO", "onCreateOptionsMenu chamado")
+
+        menuInflater.inflate(R.menu.menu_detalhes_lista, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_detalhes_lista_editar -> {
+                Intent(this, RegistroNovaListaActivity::class.java).apply {
+                    putExtra(CHAVE_LIST_ID, lisToDoId)
+                    startActivity(this)
+                }
+            }
+
+            R.id.menu_detalhes_lista_remover -> {
+                lifecycleScope.launch {
+                    listToDo?.let { lisToDoDAO.remove(it) }
+                    finish()
+                }
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun buscaLista() {

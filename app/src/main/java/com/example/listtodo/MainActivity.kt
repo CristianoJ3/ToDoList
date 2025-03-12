@@ -62,6 +62,12 @@ class MainActivity : AppCompatActivity() {
                 }
                 startActivity(intent)
             }
+        adapter.quandoClicaEmEditar = {
+            Log.i("ITEM-CLICADO", "configuraRecyclerView: Editar $it")
+        }
+        adapter.quandoClicaEmRemover = {
+            Log.i("ITEM-CLICADO", "configuraRecyclerView: Remover $it")
+        }
     }
 
     private fun configuraFab() {
