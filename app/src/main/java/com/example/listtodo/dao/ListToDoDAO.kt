@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface ListToDoDAO {
 
-    @Query("SELECT * FROM ListToDoDataModel")
+    @Query("SELECT * FROM ListToDoDataModel ORDER BY finished ASC")
     fun getAllLists(): Flow<List<ListToDoDataModel>>
 
     @Query("SELECT * FROM ListToDoDataModel WHERE id = :listId")
