@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.listtodo.database.AppDatabase
@@ -57,8 +59,7 @@ class DetalhesListActivity : AppCompatActivity(){
 
             R.id.menu_detalhes_lista_remover -> {
                 lifecycleScope.launch {
-                    listToDo?.let { lisToDoDAO.remove(it) }
-                    finish()
+                    mostrarDialogoConfirmacao()
                 }
             }
         }
@@ -86,5 +87,23 @@ class DetalhesListActivity : AppCompatActivity(){
             listToDoDescription.text = listaCarregada.listDescription
             imageDetails.setImageResource(listaCarregada.imageBackground)
         }
+    }
+
+    private fun mostrarDialogoConfirmacao() {
+        AlertDialog.Builder(this)
+            .setTitle("Confirmar exclusão!")
+            .setMessage("Deseja apagar esta lista?")
+            .setPositiveButton("Apagar") { _, _ ->
+                lifecycleScope.launch {
+                    listToDo?.let { lisToDoDAO.remove(it) }
+                    Toast.makeText(this@DetalhesListActivity, "Lista removida", Toast.LENGTH_SHORT).show()
+                    finish()
+                }
+            }
+            .setNegativeButton("Cancelar") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .create()
+            .show()
     }
 }
