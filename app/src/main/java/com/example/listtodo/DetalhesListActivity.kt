@@ -91,7 +91,7 @@ class DetalhesListActivity : AppCompatActivity(){
 
     private fun mostrarDialogoConfirmacao() {
         AlertDialog.Builder(this)
-            .setTitle("Confirmar exclusão!")
+            .setTitle("ATENÇÃO!")
             .setMessage("Deseja apagar esta lista?")
             .setPositiveButton("Apagar") { _, _ ->
                 lifecycleScope.launch {
