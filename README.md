@@ -3,7 +3,12 @@ o usuário pode gerenciar tarefas que foram concluídas, alterando o status e a 
 acessar a página de detalhes ao clicar em um item da lista, editar e excluir um item a qualquer momento a partir da página de detalhes.
 Para o app foram utilizados:
 
-- Variados conceitos de layouts
-- Desenvolvimento android com Kotlin
-- Banco de dados com SQLite e Room
-- Execução de tarefas com coroutines 
+- Diferentes conceitos de layouts, dentre eles: 
+ConstraintLayout, AppBarLayout, MaterialCardView e ScrollView
+- Utilização do Recycler View para criar múltiplos itens
+- Transição entre Activities
+- Conceitos de binding para criação dos click events
+- Tratamento de erro utilizando mensagens de Toast
+- Implementação de um componente Float Action Button
+- Banco de dados local com SQLite e Room
+- Execução de tarefas com Coroutines 
