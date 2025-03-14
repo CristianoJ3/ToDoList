@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    // Função para buscar todas as listas salvas
     private fun searchLists() {
         lifecycleScope.launch {
             listToDoDAO.getAllLists().collect { lists ->
@@ -46,6 +47,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // Função para habilitar os eventos de clique realizados pelo adapter
     private fun chamaRecyclerView() {
 
         val recyclerView = binding.listItensToDoRecyclerView
@@ -70,6 +72,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // Configura o clique fo Float Action Button
     private fun configuraFab() {
         val fab = binding.newListFab
         fab.setOnClickListener {
@@ -78,6 +81,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // Função para chamar a página de registro para uma nova lista
     private fun abreRegistroNovaLista() {
         val intent = Intent(this, RegistroNovaListaActivity::class.java)
         Log.i("FAB", "VAI INICIAR ACTIVITY")

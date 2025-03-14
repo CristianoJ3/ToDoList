@@ -6,9 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.PopupMenu
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.listtodo.R
 import com.example.listtodo.databinding.ActivityToDoListBinding
@@ -32,9 +30,11 @@ class ListToDoAdapter(
 
         private lateinit var listToDoDetails: ListToDoDataModel
 
+        // Verificação para habilitar o clique em cada item da lista e retornar os respectivos
+        // dados a página de detalhes
         init {
                 itemView.setOnClickListener {
-                    // verificação da existência de valores em property lateinit
+                    // Verificação da existência de valores em property lateinit
                     if (::listToDoDetails.isInitialized) {
                         Log.i("Formulario", "Lista clicada no Adapter: $listToDoDetails")
                         quandoClicaNoItem(listToDoDetails)
@@ -42,6 +42,8 @@ class ListToDoAdapter(
                 }
             }
 
+        // Função para vincular os dados recebidos pelo adapter aos referidos campos
+        // da classe ListToDoDataModel
         fun vincula(listToDoDataModel: ListToDoDataModel) {
             this.listToDoDetails = listToDoDataModel
             val title = binding.titleListToDo
@@ -53,6 +55,7 @@ class ListToDoAdapter(
         }
 
 
+        // Função para habilitar o evento de clique nos menus de editar e remover
         override fun onMenuItemClick(item: MenuItem?): Boolean {
             item?.let {
                 when (it.itemId) {
@@ -80,12 +83,13 @@ class ListToDoAdapter(
     override fun onBindViewHolder(holder: ListToDoViewHolder, position: Int) {
         val listaToDo = listaTarefasToDo[position]
         holder.vincula(listaToDo)
-//        holder.tituloListaToDo.text = listaToDo.listTitle
-//        holder.descricaoListaToDo.text = listaToDo.listDescription
-//        holder.iconListToDo.setImageResource(listaToDo.imageBackground)
     }
 
+    // Notação SupressLint para notificar o adapter quando
+    // os dados forem alterados no banco de dados
     @SuppressLint("NotifyDataSetChanged")
+    // Função para atualizar os dados salvos no banco de dados e apresentá-las
+    // na tela principal
     fun atualiza(listToDo: List<ListToDoDataModel>){
         this.listaTarefasToDo.clear()
         this.listaTarefasToDo.addAll(listToDo)

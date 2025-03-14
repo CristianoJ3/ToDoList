@@ -30,7 +30,6 @@ class DetalhesListActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        Log.i("FAB", "ACESSANDO NOVA ACTIVITY")
         setSupportActionBar(binding.toolbar)
 
         tryLauncherList()
@@ -41,6 +40,7 @@ class DetalhesListActivity : AppCompatActivity(){
         buscaLista()
     }
 
+    // Função para chamar o menu manualmente na página de detalhes
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         Log.i("TESTANDO", "onCreateOptionsMenu chamado")
 
@@ -48,6 +48,8 @@ class DetalhesListActivity : AppCompatActivity(){
         return super.onCreateOptionsMenu(menu)
     }
 
+    // Função para realizar as atividades referentes em cada item de menu
+    // que for selecionado
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.menu_detalhes_lista_editar -> {
@@ -66,6 +68,12 @@ class DetalhesListActivity : AppCompatActivity(){
         return super.onOptionsItemSelected(item)
     }
 
+    // Função para buscar cada lista e seus respectivos dados pela chave ID
+    private fun tryLauncherList() {
+        lisToDoId = intent.getLongExtra(CHAVE_LIST_ID, 0L)
+    }
+
+    // Função para buscar os dados da lista que foi encontrada pelo tryLauncherList
     private fun buscaLista() {
         lifecycleScope.launch {
             lisToDoDAO.searchAllLists(lisToDoId).collect { listFounded ->
@@ -77,10 +85,7 @@ class DetalhesListActivity : AppCompatActivity(){
         }
     }
 
-    private fun tryLauncherList() {
-        lisToDoId = intent.getLongExtra(CHAVE_LIST_ID, 0L)
-    }
-
+    // Função para preencher na página de detalhes os campos da lista encontrada
     private fun preencheCampos(listaCarregada: ListToDoDataModel) {
         with(binding) {
             listToDoTitle.text = listaCarregada.listTitle
@@ -89,6 +94,7 @@ class DetalhesListActivity : AppCompatActivity(){
         }
     }
 
+    // Um Alert Dialog para o usuário confirmar ou cancelar antes da exclusão de um item
     private fun mostrarDialogoConfirmacao() {
         AlertDialog.Builder(this)
             .setTitle("ATENÇÃO!")
