@@ -1,0 +1,17 @@
+[33mab8fdf4[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m Adicionado um novo ícone para o aplicativo no AndroidManifest.xml.
+[33m3af4c6c[m Adicionada uma caixa de dialog em DetalhesListActivity.kt para confirmar se o usuário realmente deseja excluir uma lista.
+[33m48f1c43[m Alteração no getAllLists em ListToDoDAO.kt para organizar as listas não finalizadas a frente das finalizadas.
+[33m37e6124[m Atualização no código para permitir a edição dos dados de uma lista, trazendo os dados já salvos para a tela de edição.
+[33m174d308[m Adição de um menu para edição e exclusão de uma lista.
+[33mc2e7853[m Adição de uma nova activity activity_detalhes_list.xml e DetalhesListActivity.kt. Configuração no Adapter para recuperar os dados e transmití-los entre activities. Agora é possível clicar em um item da lista e abrir uma nova página com detalhes do mesmo.
+[33m6dad837[m Adição de um novo ícone icone_lista_to_do_checked.jpg para ilustrar tarefas que forem concluídas. Adição do componente imageBackground em ListToDoDataModel.kt. Salvamento da imagem recebida pelo Data Model no Adapter. Alteração da lógica em RegistroNovaListaActivity.kt para alterar a imagem caso switchButton estiver marcado.
+[33md55df78[m Correção de nomenclaturas nos layouts. Término da implementação do room, salvando e apresentando os dados das listas na tela.
+[33m9a81d46[m Refatoração nos nomes de alguns campos nos arquivos xml. Criação dos componentes do room para salvar os dados da lista em um banco de dados local.
+[33mc9435de[m Criação do AppDatabase.kt, ListToDoDAO.kt e da Entity em ListToDoDataModel.kt.
+[33m6c6fcf2[m Adição do plugin kapt e das dependências do kapt e do room no build.gradle.kts. Pequenas alterações do layout em activity_registro_nova_lista.xml.
+[33m0abae13[m Adição de um switch button para que o usuário possa determinar quando concluiu uma lista.
+[33m86c5831[m Adicionada uma nova Activity, chamada  activity_registro_nova_lista.xml e a integração da nova página com o FAB presente em activity_main.xml.
+[33mdeaef82[m Correção de margem no textView de ambos os XML; Implementação da classe adapter; Integração da aplicação com o adapter e criação de dados fictícios para exemplificar o funcionamento parcial do app.
+[33m6eba7c8[m Criação da classe Adapter, ainda sem suas funcionalidades; Pequenas alterações no layout da activity_main.xml; Adição do screenOrientation="portrait" no AndroidManifest.xml; Rearrumação das classes em novos packeges.
+[33mb00c35c[m Criada a primeira interface do app,
+[33m51c4cd6[m Initial commit
