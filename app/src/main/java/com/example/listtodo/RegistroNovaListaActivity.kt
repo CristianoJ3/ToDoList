@@ -2,6 +2,7 @@ package com.example.listtodo
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.listtodo.dao.ListToDoDAO
@@ -25,6 +26,7 @@ class RegistroNovaListaActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
         Log.i("FAB", "ACESSANDO NOVA ACTIVITY")
 
         configuraBotaoSubmeter()
@@ -34,6 +36,13 @@ class RegistroNovaListaActivity : AppCompatActivity() {
     // Função para buscar cada lista e seus respectivos dados pela chave ID
     private fun tryLauncherList() {
         listToDoId = intent.getLongExtra(CHAVE_LIST_ID, 0L)
+
+        // Algoritmo para identificar se uma lista está sendo criada ou editada
+        if (listToDoId > 0) {
+            title = "Editar Lista"
+        } else {
+            title = "Registro Nova Lista"
+        }
     }
 
     // Função para configurar o evento de clique do botão submeter para salvar
@@ -76,12 +85,14 @@ class RegistroNovaListaActivity : AppCompatActivity() {
                     if (listToDoId > 0) {
                         newList.id = listToDoId
                         listToDoDAO.updateList(newList)
-                        Log.i("NEW-SAVE", "ITENS SALVO Titulo = $titulo , Descricao = $descricao , Imagem = $imageSet")
                     } else {
                         listToDoDAO.saveList(newList)
                     }
                     finish()
                 }
+            } else {
+                Toast.makeText(this@RegistroNovaListaActivity, "Lista vazia", Toast.LENGTH_SHORT)
+                    .show()
             }
 
         }

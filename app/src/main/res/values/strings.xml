@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">ToDoList</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_registro_nova_lista_activity">RegistroNovaListaActivity</string>
+    <string name="title_activity_detalhes_activity">DetalhesListActivity</string>
 </resources>
