@@ -12,3 +12,7 @@ ConstraintLayout, AppBarLayout, MaterialCardView e ScrollView
 - Implementação de um componente Float Action Button
 - Banco de dados local com SQLite e Room
 - Execução de tarefas com Coroutines 
+
+
+![1741973227938](https://github.com/user-attachments/assets/5f28b5cd-c4ce-484b-8642-7d60e77745f4)
+
